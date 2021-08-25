@@ -32,7 +32,9 @@ function sumBigNumbersString(array $array, int $digitQuantity): string
         }
         $globalSum = $digitSum[strlen($digitSum) - 1] . $globalSum;
         // если индекс последнего разряда суммы цифр одного разряда больше, чем общий индекс цикла $i, 
-        // то новое число для прибавления будет превышать 50 цифр. Этот случай стоит учесть отдельно
+        // то новое число для прибавления будет превышать 50 цифр. Этот случай стоит учесть отдельно.
+        // Оставляем в $digitSum только то, что не превышает 50 цифр, остальное отправляем в отдельный массив $globalExtras,
+        // которым мы воспользуемся при подсчете суммы разряда нулевого индекса.
         if ((strlen($digitSum) - 1) > $i) {
             $globalExtras[] = substr($digitSum, 0, (strlen($digitSum) - 1 - $i)) * 10;
             $digitSum = substr($digitSum, (strlen($digitSum) - 1 - $i));
